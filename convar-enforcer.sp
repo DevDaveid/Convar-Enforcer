@@ -10,11 +10,10 @@ public Plugin myinfo = {
 
 public void OnPluginStart()
 {
-    Handle cvar = FindConVar("sv_mute_players_with_social_penalties");
-    SetConVarInt(cvar, 0);
+    Handle cv_Mute = FindConVar("sv_mute_players_with_social_penalties");
+    if(cv_Mute != INVALID_HANDLE)
+        SetConVarInt(cv_Mute, 0);
+    CloseHandle(cv_Mute);
 
-    cvar = FindConVar("sv_full_alltalk");
-    SetConVarInt(cvar, 1);
-
-    CloseHandle(cvar);
+    ServerCommand("sv_full_alltalk 1");
 }
